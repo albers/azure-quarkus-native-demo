@@ -1,0 +1,55 @@
+# Handle line endings automatically for files detected as text
+# and leave all files detected as binary untouched.
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+*.adoc          text
+*.conf          text
+*.css           text
+*.csv           text
+*.htm           text
+*.html          text
+*.http          text
+*.ini           text
+*.md            text
+*.txt           text
+*.xml           text
+*.yml           text
+*.yaml          text
+*.groovy        text
+*.gdsl          text
+*.java          text
+*.js            text
+*.json          text
+*.jsp           text
+*.properties    text
+*.scala         text
+*.sql           text
+Dockerfile      text
+MANIFEST.MF     text
+.gitattributes  text
+.gitignore      text
+.dockerignore   text
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.gif           binary
+*.ico           binary
+*.jpeg          binary
+*.jpg           binary
+*.png           binary
+*.class         binary
+*.ear           binary
+*.jar           binary
+*.war           binary
+
+# Executable scripts with platform specific line endings
+*.sh            text eol=lf
+
+# Maven Wrapper
+mvnw            text eol=lf
+mvnw.cmd        text eol=crlf
+maven-wrapper.properties    text eol=lf
