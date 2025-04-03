@@ -1,4 +1,3 @@
-# de.hs.azure-quarkus-native-demo
+# azure-quarkus-native-demo
 
-A playground for evaluating problems with Quarkus native image builds
-when using Azure resources with workload identity.
+A demonstration project showcasing ways to access Azure resources from Quarkus native image containers running on Kubernetes.
