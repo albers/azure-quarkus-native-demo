@@ -1,0 +1,17 @@
+# create a copy of this file as "values.yaml" in the same directory and add the missing values.
+
+image:
+  repository:
+  pullPolicy: Always
+  tag: latest
+
+serviceAccount:
+  name:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: false
+  # Annotations to add to the service account
+  annotations:
+    azure.workload.identity/client-id:
+    azure.workload.identity/tenant-id:

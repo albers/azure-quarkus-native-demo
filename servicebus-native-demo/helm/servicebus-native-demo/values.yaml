@@ -26,7 +26,8 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-podLabels: {}
+podLabels:
+  azure.workload.identity/use: "true"
 
 podSecurityContext: {}
   # fsGroup: 2000
