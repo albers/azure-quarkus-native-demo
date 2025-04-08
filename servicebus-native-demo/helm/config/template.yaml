@@ -15,3 +15,9 @@ serviceAccount:
   annotations:
     azure.workload.identity/client-id:
     azure.workload.identity/tenant-id:
+
+# connection to Azure Service Bus topic subscription
+servicebus:
+  namespace=
+  topic=
+  subscription=

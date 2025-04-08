@@ -25,6 +25,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# connection to Azure Service Bus topic subscription
+servicebus:
+  namespace:
+  topic:
+  subscription:
+
 podAnnotations: {}
 podLabels:
   azure.workload.identity/use: "true"

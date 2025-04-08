@@ -36,6 +36,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: SERVICEBUS_NAMESPACE
+              value: "{{.Values.servicebus.namespace}}"
+            - name: SERVICEBUS_TOPIC
+              value: "{{.Values.servicebus.topic}}"
+            - name: SERVICEBUS_SUBSCRIPTION
+              value: "{{.Values.servicebus.subscription}}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
