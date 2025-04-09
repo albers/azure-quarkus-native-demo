@@ -19,5 +19,5 @@ serviceAccount:
 # connection to Azure Service Bus topic subscription
 servicebus:
   namespace=
-  topic=
-  subscription=
+  topic=topic
+  subscription=subscription
