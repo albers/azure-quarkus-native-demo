@@ -2,8 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.hs.azure-quarkus-native-demo</groupId>
-    <artifactId>servicebus-native-demo</artifactId>
+    <artifactId>servicebus-workload-id</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <description>A demo application that connects to an Azure Service Bus topic authenticating with Workload Identity.</description>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>

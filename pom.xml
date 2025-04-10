@@ -10,6 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>servicebus-native-demo</module>
+        <module>servicebus-workload-id</module>
     </modules>
 </project>

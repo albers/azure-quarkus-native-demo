@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "servicebus-native-demo.fullname" . }}
+  name: {{ include "servicebus-workload-id.fullname" . }}
   labels:
-    {{- include "servicebus-native-demo.labels" . | nindent 4 }}
+    {{- include "servicebus-workload-id.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "servicebus-native-demo.selectorLabels" . | nindent 6 }}
+      {{- include "servicebus-workload-id.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "servicebus-native-demo.labels" . | nindent 8 }}
+        {{- include "servicebus-workload-id.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "servicebus-native-demo.serviceAccountName" . }}
+      serviceAccountName: {{ include "servicebus-workload-id.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
