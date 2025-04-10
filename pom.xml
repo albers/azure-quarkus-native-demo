@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>servicebus-connection-string</module>
         <module>servicebus-workload-id</module>
     </modules>
 </project>
