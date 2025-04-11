@@ -55,7 +55,7 @@ output "servicebus-namespace" {
 
 output "servicebus-fqdn" {
   value       = "${azurerm_servicebus_namespace.sb-ns.name}.servicebus.windows.net"
-  description = "Fully qualified domain name of the Service Bus namespace"
+  description = "Fully qualified domain name of the Service Bus namespace host"
 }
 
 output "servicebus-topic" {

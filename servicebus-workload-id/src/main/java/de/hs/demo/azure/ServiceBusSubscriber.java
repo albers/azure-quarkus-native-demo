@@ -21,8 +21,8 @@ class ServiceBusSubscriber {
     @Inject
     Logger logger;
 
-    @ConfigProperty(name = "servicebus.namespace")
-    String namespace;
+    @ConfigProperty(name = "servicebus.fqdn")
+    String fqdn;
 
     @ConfigProperty(name = "servicebus.topic")
     String topic;
@@ -42,7 +42,7 @@ class ServiceBusSubscriber {
         TokenCredential credential = new DefaultAzureCredentialBuilder().build();
 
         return new ServiceBusClientBuilder()
-                .fullyQualifiedNamespace(namespace)
+                .fullyQualifiedNamespace(fqdn)
                 .credential(credential)
                 .transportType(AMQP_WEB_SOCKETS)
                 .processor()
