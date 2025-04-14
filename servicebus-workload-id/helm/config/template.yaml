@@ -1,23 +1,35 @@
-# create a copy of this file as "values.yaml" in the same directory and add the missing values.
+# Customization of the Helm chart.
+# Create a copy of this file as "values.yaml" in the same directory and add the missing values
+# based on the terraform output.
 
 image:
+  # The image repository to use (full image name without tag),
+  # '<container-registry from the terraform output>/azure-quarkus-native-demo/servicebus-workload-id'
   repository:
   pullPolicy: Always
   tag: latest
 
 serviceAccount:
+  # The name of the service account to use,
+  # 'service-account-name' from the terraform output.
   name:
-  # Specifies whether a service account should be created
   create: true
-  # Automatically mount a ServiceAccount's API credentials?
   automount: false
-  # Annotations to add to the service account
   annotations:
+    # The client id of the Manged Identity for the Workload Identity,
+    # 'service-account-client-id' from the terraform output.
     azure.workload.identity/client-id:
+    # The tenant id in which the subscription resides.
     azure.workload.identity/tenant-id:
 
 # connection to Azure Service Bus topic subscription
 servicebus:
+  # The fully qualified domain name of the Service Bus namespace,
+  # 'servicebus-fqdn' from the terraform output.
   fqdn=
+  # The name of the topic to use,
+  # 'servicebus-topic' from the terraform output.
   topic=topic
+  # The name of the subscription to use,
+  # 'servicebus-subscription' from the terraform output.
   subscription=subscription

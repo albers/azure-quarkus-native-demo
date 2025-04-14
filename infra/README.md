@@ -23,7 +23,7 @@ It creates the following resources:
 
 The project is configured with variables defined in the file [variables.tf](variables.tf).
 See the hints at the beginning of that file how to customize the project.
-Several naming strategies for the created resources are supported.
+Several naming strategies for the created resources are supported by the [aztfmod/azurecaf](https://registry.terraform.io/providers/aztfmod/azurecaf/1.2.28/docs) provider.
 
 ## Disclaimer
 
