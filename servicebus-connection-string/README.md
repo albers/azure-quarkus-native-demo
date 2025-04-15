@@ -46,7 +46,7 @@ If so, you can build the native image and deploy it to a Kubernetes cluster.
 ### Running locally
 
 The recommended way to configure the application for local execution is to create a `config/application.properties` file.
-This is described in [config/template.yaml](config/template.yaml).
+This is described in [config/template.properties](config/template.properties).
 
 This configuration allows the application to run locally with
 ```shell
@@ -69,8 +69,8 @@ Example output after receiving the message "Hello World!":
 
 This step requires you to build the Docker image and push it to a container registry
 that is accessible from the Kubernetes cluster.
-The name of the registry is set in [config/application.properties](src/main/resources/application.properties),
-see [config/template.yaml](config/template.properties).
+The name of the registry is set in [config/application.properties](config/application.properties),
+see [config/template.properties](config/template.properties).
 
 _Log in to the container registry, e.g., Azure Container Registry
 (assuming the environment variable `REGISTRY` is set to the name of the registry):_
