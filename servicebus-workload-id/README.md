@@ -4,10 +4,11 @@ This application uses the [Azure SDK for Java](https://github.com/Azure/azure-sd
 authenticating with [Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java).
 
 It creates a `ServiceBusProcessorClient` on application startup that logs incoming messages to the console.
-The authentication via Workload Identity is provided by the [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/identity/azure-identity#azure-identity-client-library-for-java).
+The authentication via Workload Identity is provided by the [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/identity/azure-identity#azure-identity-client-library-for-java),
+which is not included directly but by adding the [Azure Identity Extension](https://github.com/quarkiverse/quarkus-azure-services/tree/main/common/azure-identity)
+module of the [Quarkus Azure Services](https://github.com/quarkiverse/quarkus-azure-services).
 
-> **The point of this application is to give a reproducible setting for fixing native build problems
-> caused by the Azure Identity library.**
+It also replaces the default http client of the Azure SDK for Java with one provided by the Quarkus Azure Services.
 
 ## Prerequisites
 
@@ -24,14 +25,11 @@ Locally installed tools:
 
 ## Native image
 
-_This native image build is started with_
+A container image with a native application is created with 
 
 ```shell
 ./mvnw clean package -Dnative -Dquarkus.container-image.build
 ```
-
-> I have not yet found a way to successfully complete the native image build.  
-> **This is the point where I need help.**  
 
 ## Running the application
 
@@ -62,13 +60,6 @@ _Build and push the image `$REGISTRY/azure-quarkus-native-demo/servicebus-worklo
 ./mvnw clean package -Dnative -Dquarkus.container-image.build -Dquarkus.container-image.push
 ```
 
-_The native image build will fail.  
-You may use a non-native image (JVM image) instead just to carry on:_
-
-```shell
-mvn clean package -Dquarkus.container-image.build -Dquarkus.container-image.push
-```
-
 Configure the deployment, see [helm/config/template.yaml](helm/config/template.yaml).
 
 _Deploy or upgrade the application in the active kubectl context:_
@@ -76,10 +67,10 @@ _Deploy or upgrade the application in the active kubectl context:_
 helm upgrade --install servicebus-workload-id helm/servicebus-workload-id --values helm/config/values.yaml
 ```
 
-_Watch the logs of the Pod:_
+_Watch the logs of the pod:_
 
 ```shell
-kubectl logs --follow pod/servicebus-workload-id
+kubectl logs --follow deployments/servicebus-workload-id
 ```
 
 Now you can send a message to the topic subscription with the Service Bus Explorer of the Azure Dashboard
