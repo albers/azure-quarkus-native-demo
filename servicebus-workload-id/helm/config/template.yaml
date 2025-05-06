@@ -26,10 +26,10 @@ serviceAccount:
 servicebus:
   # The fully qualified domain name of the Service Bus namespace,
   # 'servicebus-fqdn' from the terraform output.
-  fqdn=
+  fqdn:
   # The name of the topic to use,
   # 'servicebus-topic' from the terraform output.
-  topic=topic
+  topic: topic
   # The name of the subscription to use,
   # 'servicebus-subscription' from the terraform output.
-  subscription=subscription
+  subscription: subscription
