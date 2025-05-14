@@ -37,7 +37,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: SERVICEBUS_CONNECTION_STRING
+            - name: QUARKUS_AZURE_SERVICEBUS_CONNECTION_STRING
               value: "{{.Values.servicebus.connectionString}}"
             - name: SERVICEBUS_TOPIC
               value: "{{.Values.servicebus.topic}}"

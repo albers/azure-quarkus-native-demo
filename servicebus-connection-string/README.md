@@ -1,6 +1,7 @@
 # servicebus-connection-string
 
-This application uses the [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) to connect to an Azure Service Bus's topic subscription
+This application uses the [Azure Service Bus Extension](https://docs.quarkiverse.io/quarkus-azure-services/dev/quarkus-azure-servicebus.html)
+of the [Quarkus Azure Services](https://github.com/quarkiverse/quarkus-azure-services) to connect to an Azure Service Bus's topic subscription
 **authenticating with a connection string**.
 
 It creates a `ServiceBusProcessorClient` on application startup that logs incoming messages to the console.
@@ -24,18 +25,11 @@ Locally installed tools:
 
 ## Native image
 
-This application can be built as a native image with
+Due to the support provided by the Quarkus Azure Services,
+this application can be built as a native image and packaged in a container with
 
 ```shell
 ./mvnw clean package -Dnative -Dquarkus.container-image.build
-```
-
-because these properties are set in [application.properties](src/main/resources/application.properties): 
-
-```properties
-quarkus.native.additional-build-args=\
-  --initialize-at-run-time=com.microsoft.azure.proton.transport.ws.impl.Utils,\
-  --initialize-at-run-time=com.microsoft.azure.proton.transport.proxy.impl.DigestProxyChallengeProcessorImpl
 ```
 
 ## Running the application

@@ -27,7 +27,7 @@ serviceAccount:
 
 # connection to Azure Service Bus topic subscription
 servicebus:
-  fqdn:
+  namespace:
   topic:
   subscription:
 

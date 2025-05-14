@@ -9,7 +9,7 @@ All the application does is dump some sample data from the database to the conso
 
 Resources:
 - An Azure Database for PostgreSQL flexible servers
-- A Kubernetes cluster enabled for workload identity where you have permission to create deployments.
+- A Kubernetes cluster that is enabled for workload identity where you have permission to create deployments.
 
 > See [../infra/README.md](../infra/README.md) for an automated way to create the resources for this demo.
 

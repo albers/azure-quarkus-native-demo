@@ -24,9 +24,9 @@ serviceAccount:
 
 # connection to Azure Service Bus topic subscription
 servicebus:
-  # The fully qualified domain name of the Service Bus namespace,
-  # 'servicebus-fqdn' from the terraform output.
-  fqdn:
+  # The name of the Service Bus namespace,
+  # 'servicebus-namespace' from the terraform output.
+  namespace:
   # The name of the topic to use,
   # 'servicebus-topic' from the terraform output.
   topic: topic

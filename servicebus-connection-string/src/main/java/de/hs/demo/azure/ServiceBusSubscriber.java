@@ -8,8 +8,6 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
-import static com.azure.core.amqp.AmqpTransportType.AMQP_WEB_SOCKETS;
-
 /**
  * Creates a connection to the Azure Service Bus on application startup
  * and disconnects on application shutdown.
@@ -19,8 +17,8 @@ class ServiceBusSubscriber {
     @Inject
     Logger logger;
 
-    @ConfigProperty(name = "servicebus.connection-string")
-    String connectionString;
+    @Inject
+    ServiceBusClientBuilder serviceBusClientBuilder;
 
     @ConfigProperty(name = "servicebus.topic")
     String topic;
@@ -37,9 +35,7 @@ class ServiceBusSubscriber {
     }
 
     private ServiceBusProcessorClient createServiceBusProcessorClient() {
-        return new ServiceBusClientBuilder()
-                .connectionString(connectionString)
-                .transportType(AMQP_WEB_SOCKETS)
+        return serviceBusClientBuilder
                 .processor()
                 .topicName(topic)
                 .subscriptionName(subscription)
@@ -48,7 +44,7 @@ class ServiceBusSubscriber {
                                 messageContext.getMessage().getMessageId(),
                                 messageContext.getMessage().getBody())))
                 .processError(serviceBusErrorContext ->
-                        logger.error("Faild to receive message: " + serviceBusErrorContext.getException().getMessage()))
+                        logger.error("Failed to receive message: " + serviceBusErrorContext.getException().getMessage()))
                 .buildProcessorClient();
     }
 

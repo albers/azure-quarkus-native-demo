@@ -1,14 +1,15 @@
 # servicebus-workload-id
 
-This application uses the [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) to connect to an Azure Service Bus's topic subscription
-authenticating with [Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java).
+This application uses the [Azure Service Bus Extension](https://docs.quarkiverse.io/quarkus-azure-services/dev/quarkus-azure-servicebus.html)
+of the [Quarkus Azure Services](https://github.com/quarkiverse/quarkus-azure-services) to connect to an Azure Service Bus's topic subscription
+**authenticating with [Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java)**.
 
 It creates a `ServiceBusProcessorClient` on application startup that logs incoming messages to the console.
 The authentication via Workload Identity is provided by the [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/identity/azure-identity#azure-identity-client-library-for-java),
 which is not included directly but by adding the [Azure Identity Extension](https://github.com/quarkiverse/quarkus-azure-services/tree/main/common/azure-identity)
 module of the [Quarkus Azure Services](https://github.com/quarkiverse/quarkus-azure-services).
 
-It also replaces the default http client of the Azure SDK for Java with one provided by the Quarkus Azure Services.
+> The point of this application is to show that it can be compiled to a native image that still functions when deployed to a Kubernetes cluster.
 
 ## Prerequisites
 
@@ -25,7 +26,8 @@ Locally installed tools:
 
 ## Native image
 
-A container image with a native application is created with 
+Due to the support provided by the Quarkus Azure Services,
+this application can be built as a native image and packaged in a container with
 
 ```shell
 ./mvnw clean package -Dnative -Dquarkus.container-image.build

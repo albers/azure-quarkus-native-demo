@@ -4,8 +4,10 @@ This project demonstrates how various Azure resources can be accessed from a Qua
 when using [Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java) for authentication.
 The project has a clear focus on solutions that can be compiled to a [native image](https://quarkus.io/guides/building-native-image) using GraalVM.
 
-_The original purpose of this project was to illustrate problems with the native image build when using Workload Identity._
-_These issues are now resolved, thanks to @backwind1233 in #1._
+>The original purpose of this project was to illustrate problems with the native image build when using Workload Identity.
+These issues are now resolved, thanks to @backwind1233 in [PR #1](https://github.com/albers/azure-quarkus-native-demo/pull/1).
+Further improvements were made by the new [Azure Service Bus Extension](https://docs.quarkiverse.io/quarkus-azure-services/dev/quarkus-azure-servicebus.html)
+of the [Quarkus Azure Services](https://github.com/quarkiverse/quarkus-azure-services).
 
 ## Projects
 

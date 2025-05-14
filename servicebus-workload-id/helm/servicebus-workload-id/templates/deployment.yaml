@@ -37,8 +37,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: SERVICEBUS_FQDN
-              value: "{{.Values.servicebus.fqdn}}"
+            - name: QUARKUS_AZURE_SERVICEBUS_NAMESPACE
+              value: "{{.Values.servicebus.namespace}}"
             - name: SERVICEBUS_TOPIC
               value: "{{.Values.servicebus.topic}}"
             - name: SERVICEBUS_SUBSCRIPTION

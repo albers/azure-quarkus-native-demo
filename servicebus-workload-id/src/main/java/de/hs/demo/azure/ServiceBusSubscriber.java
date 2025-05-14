@@ -1,7 +1,5 @@
 package de.hs.demo.azure;
 
-import com.azure.core.credential.TokenCredential;
-import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.messaging.servicebus.ServiceBusClientBuilder;
 import com.azure.messaging.servicebus.ServiceBusProcessorClient;
 import io.quarkus.runtime.Shutdown;
@@ -9,8 +7,6 @@ import io.quarkus.runtime.Startup;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
-
-import static com.azure.core.amqp.AmqpTransportType.AMQP_WEB_SOCKETS;
 
 /**
  * Creates a connection to the Azure Service Bus on application startup
@@ -21,15 +17,15 @@ class ServiceBusSubscriber {
     @Inject
     Logger logger;
 
-    @ConfigProperty(name = "servicebus.fqdn")
-    String fqdn;
-
-    @ConfigProperty(name = "servicebus.topic", defaultValue = "topic")
+    @ConfigProperty(name = "servicebus.topic")
     String topic;
 
-    @ConfigProperty(name = "servicebus.subscription", defaultValue = "subscription")
+    @ConfigProperty(name = "servicebus.subscription")
     String subscription;
     private ServiceBusProcessorClient serviceBusClient;
+
+    @Inject
+    ServiceBusClientBuilder serviceBusClientBuilder;
 
     @Startup
     void connect() {
@@ -39,12 +35,7 @@ class ServiceBusSubscriber {
     }
 
     private ServiceBusProcessorClient createServiceBusProcessorClient() {
-        TokenCredential credential = new DefaultAzureCredentialBuilder().build();
-
-        return new ServiceBusClientBuilder()
-                .fullyQualifiedNamespace(fqdn)
-                .credential(credential)
-                .transportType(AMQP_WEB_SOCKETS)
+        return serviceBusClientBuilder
                 .processor()
                 .topicName(topic)
                 .subscriptionName(subscription)
@@ -53,7 +44,7 @@ class ServiceBusSubscriber {
                                 messageContext.getMessage().getMessageId(),
                                 messageContext.getMessage().getBody())))
                 .processError(serviceBusErrorContext ->
-                        logger.error("Faild to receive message: " + serviceBusErrorContext.getException().getMessage()))
+                        logger.error("Failed to receive message: " + serviceBusErrorContext.getException().getMessage()))
                 .buildProcessorClient();
     }
 
