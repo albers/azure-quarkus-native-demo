@@ -16,7 +16,12 @@ output "service-account-name" {
 
 output "service-account-client-id" {
   value       = azurerm_user_assigned_identity.aks-msi.client_id
-  description = "client-id of the Workload Identity for our Quarkus demo application"
+  description = "Client-id of the Workload Identity for our Quarkus demo application"
+}
+
+output "service-account-tenant-id" {
+  value       = azurerm_user_assigned_identity.aks-msi.tenant_id
+  description = "Tenant-id used for this infra project"
 }
 
 output "application-namespace" {
@@ -67,5 +72,10 @@ output "postgres-fqdn" {
 
 output "postgres-jdbc-url" {
   value       = "jdbc:postgresql://${azurerm_postgresql_flexible_server.postgres.fqdn}/demo?authenticationPluginClassName=com.azure.identity.extensions.jdbc.postgresql.AzurePostgresqlAuthenticationPlugin&sslmode=require"
+  description = "JDBC url of the database"
+}
+
+output "postgres-jdbc-url-no-plugin" {
+  value       = "jdbc:postgresql://${azurerm_postgresql_flexible_server.postgres.fqdn}/demo?sslmode=require"
   description = "JDBC url of the database"
 }

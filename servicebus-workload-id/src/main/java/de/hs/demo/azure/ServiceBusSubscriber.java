@@ -24,10 +24,10 @@ class ServiceBusSubscriber {
     @ConfigProperty(name = "servicebus.fqdn")
     String fqdn;
 
-    @ConfigProperty(name = "servicebus.topic")
+    @ConfigProperty(name = "servicebus.topic", defaultValue = "topic")
     String topic;
 
-    @ConfigProperty(name = "servicebus.subscription")
+    @ConfigProperty(name = "servicebus.subscription", defaultValue = "subscription")
     String subscription;
     private ServiceBusProcessorClient serviceBusClient;
 

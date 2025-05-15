@@ -28,9 +28,13 @@ resource "azurerm_servicebus_subscription" "topic-subscription" {
 }
 
 resource "azurerm_role_assignment" "topic-subscription-receiver" {
+  for_each = merge(
+    { (azurerm_user_assigned_identity.aks-msi.name) : (azurerm_user_assigned_identity.aks-msi.principal_id) },
+  var.entra_id_users)
+
   scope                = azurerm_servicebus_subscription.topic-subscription.id
   role_definition_name = "Azure Service Bus Data Receiver"
-  principal_id         = azurerm_user_assigned_identity.aks-msi.principal_id
+  principal_id         = each.value
 }
 
 resource "azurerm_servicebus_topic_authorization_rule" "topic-listen" {

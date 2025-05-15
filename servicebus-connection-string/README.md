@@ -108,10 +108,10 @@ kubectl delete pod/servicebus-connection-string
 Alternatively, you can deploy the application with Helm.
 See [helm/config/template.yaml](helm/config/template.yaml) for how to configure the Helm chart.
 
-_Deploy or upgrade the application in the active kubectl context:_
+_Deploy the application in the active kubectl context:_
 
 ```shell
-helm upgrade --install servicebus-connection-string helm/servicebus-connection-string --values helm/config/values.yaml
+helm install servicebus-connection-string helm/servicebus-connection-string --values helm/config/values.yaml
 ```
 
 _Watch the logs of the pod:_

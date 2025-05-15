@@ -35,7 +35,18 @@ resource "azurerm_postgresql_flexible_server_active_directory_administrator" "wo
   principal_type      = "ServicePrincipal"
 }
 
-resource "azurerm_postgresql_flexible_server_database" "iam" {
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "user_access" {
+  for_each = var.entra_id_users
+
+  server_name         = azurerm_postgresql_flexible_server.postgres.name
+  resource_group_name = azurerm_postgresql_flexible_server.postgres.resource_group_name
+  tenant_id           = var.azure_tenant_id
+  object_id           = each.value
+  principal_name      = each.key
+  principal_type      = "User"
+}
+
+resource "azurerm_postgresql_flexible_server_database" "database" {
   name      = "demo"
   server_id = azurerm_postgresql_flexible_server.postgres.id
 }

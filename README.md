@@ -4,8 +4,8 @@ This project demonstrates how various Azure resources can be accessed from a Qua
 when using [Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=java) for authentication.
 The project has a clear focus on solutions that can be compiled to a [native image](https://quarkus.io/guides/building-native-image) using GraalVM.
 
-> The original purpose of this project was to illustrate problems with the native image build when using Workload Identity.
-  These issues are now resolved, thanks to @backwind1233 in #1.
+_The original purpose of this project was to illustrate problems with the native image build when using Workload Identity._
+_These issues are now resolved, thanks to @backwind1233 in #1._
 
 ## Projects
 
@@ -22,6 +22,10 @@ This application accesses an Azure Service Bus using Workload Identity for authe
 ### [servicebus-connection-string](servicebus-connection-string/README.md)
 
 This application accesses an Azure Service Bus using a connection string (SAS key) for authentication.
+
+### [postgres-workload-id](postgres-workload-id/README.md)
+
+An application that accesses an Azure Database for PostgreSQL flexible servers using Workload Identity for authentication.
 
 ## Disclaimer
 

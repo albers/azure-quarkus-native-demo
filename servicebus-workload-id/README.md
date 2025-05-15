@@ -38,10 +38,8 @@ A container image with a native application is created with
 
 ### Running locally
 
-In the reference setup, the only principal with access to the topic subscription is the
-Workload Identity principal of the pod running the application.
-This identity cannot be used outside the AKS cluster,
-so the application cannot be run locally with `./mvnw quarkus:dev`.
+If you configured user access for yourself in the reference environment,
+you can run the application locally with `./mvnw quarkus:dev`.
 
 ### Running in Kubernetes
 
@@ -62,9 +60,9 @@ _Build and push the image `$REGISTRY/azure-quarkus-native-demo/servicebus-worklo
 
 Configure the deployment, see [helm/config/template.yaml](helm/config/template.yaml).
 
-_Deploy or upgrade the application in the active kubectl context:_
+_Deploy the application in the active kubectl context:_
 ```shell
-helm upgrade --install servicebus-workload-id helm/servicebus-workload-id --values helm/config/values.yaml
+helm install servicebus-workload-id helm/servicebus-workload-id --values helm/config/values.yaml
 ```
 
 _Watch the logs of the pod:_

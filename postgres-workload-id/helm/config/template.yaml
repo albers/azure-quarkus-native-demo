@@ -1,0 +1,28 @@
+# Customization of the Helm chart.
+# Create a copy of this file as "values.yaml" in the same directory and add the missing values
+# based on the terraform output.
+
+image:
+  # The image repository to use (full image name without tag),
+  # '<container-registry from the terraform output>/azure-quarkus-native-demo/postgres-workload-id'
+  repository:
+  pullPolicy: Always
+  tag: latest
+
+serviceAccount:
+  # The name of the service account to use,
+  # 'service-account-name' from the terraform output.
+  name:
+  create: true
+  automount: false
+  annotations:
+    # The client id of the Manged Identity for the Workload Identity,
+    # 'service-account-client-id' from the terraform output.
+    azure.workload.identity/client-id:
+    # The tenant id in which the subscription resides.
+    azure.workload.identity/tenant-id:
+
+# connection to Azure Service Bus topic subscription
+datasource:
+  # 'postgres-jdbc-url' from the terraform output
+  jdbcUrl:

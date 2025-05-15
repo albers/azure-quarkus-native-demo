@@ -59,3 +59,14 @@ variable "resource_tags" {
   default     = {}
   description = "Tags to be applied to all resources. This may be useful for compliance to corporate guidelines."
 }
+
+### Additional user access
+# By default, only the Managed Identity can access the database and topic subscription via Workload Identity.
+# If you want to access the resources from your workstation in Quarkus dev mode,
+# you have give yourself additional user access.
+# This can be achieved with this setting.
+variable "entra_id_users" {
+  type        = map(string)
+  default     = {}
+  description = "map of users ({ \"email\" = \"OID\" }) that should also be able to access the database and topic subscription."
+}

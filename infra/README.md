@@ -14,10 +14,13 @@ It creates the following resources:
   - an Azure Service Bus namespace with
     - a topic and a subscription
     - a role assignment for the managed identity to access the Service Bus topic subscription
+    - optional: additional role assignments for developers using `quarkus:dev`
     - a shared access policy (SAS policy) for the Service Bus topic for access via connection string
 - Postgres database
   - an Azure Database for PostgreSQL flexible servers with
     - a database
+    - administrator access for the managed identity for database access
+    - optional: additional administrator access for developers using `quarkus:dev`
 
 **Access to the Service Bus topic subscription can either be authorized with Workload Identity or with a connection string.**
 

@@ -12,5 +12,6 @@
     <modules>
         <module>servicebus-connection-string</module>
         <module>servicebus-workload-id</module>
+        <module>postgres-workload-id</module>
     </modules>
 </project>
