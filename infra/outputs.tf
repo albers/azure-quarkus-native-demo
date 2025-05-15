@@ -72,3 +72,20 @@ output "servicebus-connection-string" {
   value       = nonsensitive(azurerm_servicebus_topic_authorization_rule.topic-listen.primary_connection_string)
   description = "Connection string for accessing the Service Bus topic via SAS authentication"
 }
+
+# Postgres outputs
+
+output "postgres-resource-group" {
+  value       = azurerm_resource_group.postgres-rg.name
+  description = "Name of the Resource Group for the Azure Database for PostgreSQL flexible servers"
+}
+
+output "postgres-fqdn" {
+  value       = azurerm_postgresql_flexible_server.postgres.fqdn
+  description = "Fully qualified domain name of the Azure Database for PostgreSQL flexible servers"
+}
+
+output "postgres-jdbc-url" {
+  value       = "jdbc:postgresql://${azurerm_postgresql_flexible_server.postgres.fqdn}/demo?authenticationPluginClassName=com.azure.identity.extensions.jdbc.postgresql.AzurePostgresqlAuthenticationPlugin&sslmode=require"
+  description = "JDBC url of the database"
+}

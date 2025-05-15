@@ -11,10 +11,13 @@ It creates the following resources:
 - Container Registry
   - an ACR registry
 - Azure Service Bus
-  - an Azure Service Bus namespace
+  - an Azure Service Bus namespace with
     - a topic and a subscription
     - a role assignment for the managed identity to access the Service Bus topic subscription
     - a shared access policy (SAS policy) for the Service Bus topic for access via connection string
+- Postgres database
+  - an Azure Database for PostgreSQL flexible servers with
+    - a database
 
 **Access to the Service Bus topic subscription can either be authorized with Workload Identity or with a connection string.**
 

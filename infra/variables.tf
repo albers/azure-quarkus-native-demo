@@ -5,8 +5,14 @@
 
 ### Where to create the resources
 
+variable "azure_tenant_id" {
+  type        = string
+  description = "The tenant in which the resources should be created"
+}
+
 variable "azure_subscription_id" {
-  type = string
+  type        = string
+  description = "The subscription in which the resources should be created"
 }
 
 variable "azure_location" {
