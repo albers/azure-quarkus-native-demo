@@ -1,17 +1,3 @@
-resource "azurecaf_name" "sb-rg" {
-  name          = "${var.project_name}-sb"
-  resource_type = "azurerm_resource_group"
-  prefixes      = length(var.resource_prefix) > 0 ? [var.resource_prefix] : []
-  suffixes      = length(var.resource_suffix) > 0 ? [var.resource_suffix] : []
-  random_length = var.resource_random_suffix_length
-}
-
-resource "azurerm_resource_group" "servicebus-rg" {
-  name     = azurecaf_name.sb-rg.result
-  location = var.azure_location
-  tags     = var.resource_tags
-}
-
 resource "azurecaf_name" "sb-ns" {
   name          = var.project_name
   resource_type = "azurerm_servicebus_namespace"
@@ -20,10 +6,11 @@ resource "azurecaf_name" "sb-ns" {
   random_length = var.resource_random_suffix_length
 }
 
+
 resource "azurerm_servicebus_namespace" "sb-ns" {
   name                = azurecaf_name.sb-ns.result
-  resource_group_name = azurerm_resource_group.servicebus-rg.name
-  location            = azurerm_resource_group.servicebus-rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   sku                 = "Standard"
   tags                = var.resource_tags
 }

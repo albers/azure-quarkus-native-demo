@@ -1,17 +1,3 @@
-resource "azurecaf_name" "postgres-rg" {
-  name          = "${var.project_name}-postgres"
-  resource_type = "azurerm_resource_group"
-  prefixes      = length(var.resource_prefix) > 0 ? [var.resource_prefix] : []
-  suffixes      = length(var.resource_suffix) > 0 ? [var.resource_suffix] : []
-  random_length = var.resource_random_suffix_length
-}
-
-resource "azurerm_resource_group" "postgres-rg" {
-  name     = azurecaf_name.postgres-rg.result
-  location = var.azure_location
-  tags     = var.resource_tags
-}
-
 resource "azurecaf_name" "postgres" {
   name          = "${var.project_name}-postgres"
   resource_type = "azurerm_postgresql_server"
@@ -22,8 +8,8 @@ resource "azurecaf_name" "postgres" {
 
 resource "azurerm_postgresql_flexible_server" "postgres" {
   name                = azurecaf_name.postgres.result
-  resource_group_name = azurerm_resource_group.postgres-rg.name
-  location            = azurerm_resource_group.postgres-rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   zone                = "1"
 
   storage_mb = 32768

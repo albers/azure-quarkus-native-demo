@@ -1,17 +1,3 @@
-resource "azurecaf_name" "aks-rg" {
-  name          = "${var.project_name}-aks"
-  resource_type = "azurerm_resource_group"
-  prefixes      = length(var.resource_prefix) > 0 ? [var.resource_prefix] : []
-  suffixes      = length(var.resource_suffix) > 0 ? [var.resource_suffix] : []
-  random_length = var.resource_random_suffix_length
-}
-
-resource "azurerm_resource_group" "aks-rg" {
-  name     = azurecaf_name.aks-rg.result
-  location = var.azure_location
-  tags     = var.resource_tags
-}
-
 resource "azurecaf_name" "aks" {
   name          = var.project_name
   resource_type = "azurerm_kubernetes_cluster"
@@ -22,10 +8,10 @@ resource "azurecaf_name" "aks" {
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                      = azurecaf_name.aks.result
-  resource_group_name       = azurerm_resource_group.aks-rg.name
-  location                  = azurerm_resource_group.aks-rg.location
+  resource_group_name       = azurerm_resource_group.rg.name
+  location                  = azurerm_resource_group.rg.location
   dns_prefix                = "${var.project_name}-aks"
-  node_resource_group       = "${azurecaf_name.aks-rg.result}-internal"
+  node_resource_group       = "${azurecaf_name.rg.result}-aks-internal"
   workload_identity_enabled = true
   oidc_issuer_enabled       = true
 

@@ -4,11 +4,6 @@
 
 # AKS outputs
 
-output "aks-resource-group" {
-  value       = azurerm_resource_group.aks-rg.name
-  description = "Name of the Resource Group for the AKS cluster"
-}
-
 output "aks-cluster-name" {
   value       = azurerm_kubernetes_cluster.aks.name
   description = "Name of the AKS cluster"
@@ -31,22 +26,12 @@ output "application-namespace" {
 
 # Container Registry outputs
 
-output "container-registry-resource-group" {
-  value       = azurerm_resource_group.acr-rg.name
-  description = "Name of the Resource Group for the Azure Container Registry"
-}
-
 output "container-registry" {
   value       = "${azurerm_container_registry.acr.name}.azurecr.io"
   description = "Name of the Azure Container Registry for storing container images"
 }
 
 # Service Bus outputs
-
-output "servicebus-resource-group" {
-  value       = azurerm_resource_group.servicebus-rg.name
-  description = "Name of the Resource Group for the Service Bus"
-}
 
 output "servicebus-namespace" {
   value       = azurerm_servicebus_namespace.sb-ns.name
@@ -74,11 +59,6 @@ output "servicebus-connection-string" {
 }
 
 # Postgres outputs
-
-output "postgres-resource-group" {
-  value       = azurerm_resource_group.postgres-rg.name
-  description = "Name of the Resource Group for the Azure Database for PostgreSQL flexible servers"
-}
 
 output "postgres-fqdn" {
   value       = azurerm_postgresql_flexible_server.postgres.fqdn
