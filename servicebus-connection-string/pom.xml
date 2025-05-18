@@ -13,11 +13,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.21.3</quarkus.platform.version>
-
-        <azure-messaging-servicebus.version>7.17.10</azure-messaging-servicebus.version>
+        <quarkus.platform.version>3.22.3</quarkus.platform.version>
+        <!-- dependencies -->
+        <azure-messaging-servicebus.version>7.17.11</azure-messaging-servicebus.version>
         <log4j.version>1.2.17</log4j.version>
-
+        <!-- maven plugins -->
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
     </properties>
