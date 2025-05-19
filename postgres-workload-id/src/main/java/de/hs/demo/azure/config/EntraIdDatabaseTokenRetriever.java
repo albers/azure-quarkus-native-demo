@@ -6,10 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * The {@link EntraIdTokenRetriever} calls the Azure CLI ({@code az.cmd}) to retrieve an Entra ID token
+ * The {@link EntraIdDatabaseTokenRetriever} calls the Azure CLI ({@code az.cmd}) to retrieve an Entra ID token
  * for the user currently logged-in to Azure.
  */
-class EntraIdTokenRetriever {
+class EntraIdDatabaseTokenRetriever {
 
     private static final String TOKEN_COMMAND = "%s account get-access-token --resource https://ossrdbms-aad.database.windows.net --query accessToken -o tsv";
 

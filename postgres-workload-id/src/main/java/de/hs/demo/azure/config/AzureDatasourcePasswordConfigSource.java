@@ -52,7 +52,7 @@ public class AzureDatasourcePasswordConfigSource implements ConfigSource {
 
     private void loadToken() {
         try {
-            this.databaseToken = new EntraIdTokenRetriever().getToken();
+            this.databaseToken = new EntraIdDatabaseTokenRetriever().getToken();
         } catch (IOException | InterruptedException e) {
             System.err.println(e.getMessage());
         }
