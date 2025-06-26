@@ -8,6 +8,8 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
+import static jakarta.enterprise.inject.spi.ObserverMethod.DEFAULT_PRIORITY;
+
 /**
  * Creates a connection to the Azure Service Bus on application startup
  * and disconnects on application shutdown.
@@ -27,7 +29,7 @@ class ServiceBusSubscriber {
     @Inject
     ServiceBusClientBuilder serviceBusClientBuilder;
 
-    @Startup
+    @Startup(DEFAULT_PRIORITY + 50) // workaround for race condition with config check, see https://github.com/quarkiverse/quarkus-azure-services/pull/410
     void connect() {
         logger.info("Connecting to Azure Service Bus.");
         serviceBusClient = createServiceBusProcessorClient();
