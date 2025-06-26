@@ -27,10 +27,14 @@ resource "azurerm_servicebus_subscription" "topic-subscription" {
   max_delivery_count = 2
 }
 
-resource "azurerm_role_assignment" "topic-subscription-receiver" {
-  for_each = merge(
-    { (azurerm_user_assigned_identity.aks-msi.name) : (azurerm_user_assigned_identity.aks-msi.principal_id) },
-  var.entra_id_users)
+resource "azurerm_role_assignment" "topic-subscription-receiver-msi" {
+  scope                = azurerm_servicebus_subscription.topic-subscription.id
+  role_definition_name = "Azure Service Bus Data Receiver"
+  principal_id         = azurerm_user_assigned_identity.aks-msi.principal_id
+}
+
+resource "azurerm_role_assignment" "topic-subscription-receiver-users" {
+  for_each = var.entra_id_users
 
   scope                = azurerm_servicebus_subscription.topic-subscription.id
   role_definition_name = "Azure Service Bus Data Receiver"
