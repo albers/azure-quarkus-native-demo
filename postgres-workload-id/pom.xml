@@ -15,7 +15,6 @@
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>3.24.2</quarkus.platform.version>
         <!-- dependencies -->
-        <azure-identity-extensions.version>1.2.2</azure-identity-extensions.version>
         <quarkus-azure-services.version>1.1.6</quarkus-azure-services.version>
         <!-- maven plugins -->
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
@@ -45,19 +44,8 @@
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.azureservices</groupId>
-            <artifactId>quarkus-azure-identity</artifactId>
+            <artifactId>quarkus-azure-identity-jdbc</artifactId>
             <version>${quarkus-azure-services.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkiverse.azureservices</groupId>
-            <artifactId>quarkus-azure-http-client-vertx</artifactId>
-            <version>${quarkus-azure-services.version}</version>
-        </dependency>
-        <dependency>
-            <!-- provides an authentication plugin for postgres that uses DefaultAzureCredentialBuilder -->
-            <groupId>com.azure</groupId>
-            <artifactId>azure-identity-extensions</artifactId>
-            <version>${azure-identity-extensions.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
